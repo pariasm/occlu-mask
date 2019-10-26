@@ -155,7 +155,7 @@ int main(int argc, const char *argv[])
 
 	// write result and quit [[[2
 	iio_write_image_float_vec(occl_path, occl, w, h, 1);
-	if (!dens_path)
+	if (dens_path)
 		iio_write_image_float_vec(dens_path, dens, w, h, 1);
 
 	if (flow) free(flow);
