@@ -151,6 +151,8 @@ int main(int argc, const char *argv[])
 			// occlusions are defined as high density areas
 			K[y][x] = (thres) ? d > thres : d;
 		}
+		else
+			K[y][x] = 1;
 	}
 
 	// write result and quit [[[2
