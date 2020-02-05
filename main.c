@@ -40,7 +40,7 @@ int main(int argc, const char *argv[])
 	bool verbose = false;
 	int  verbose_int = 0; // hack around bug in argparse
 
-	float thres = -1; // -1 means automatic value
+	float thres = 0; // -1 means automatic value
 
 	// configure command line parser
 	struct argparse_option options[] = {
@@ -152,7 +152,7 @@ int main(int argc, const char *argv[])
 			K[y][x] = (thres) ? d > thres : d;
 		}
 		else
-			K[y][x] = 1;
+			K[y][x] = (thres) ? 2. : -1.;
 	}
 
 	// write result and quit [[[2
