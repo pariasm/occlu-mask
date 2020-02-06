@@ -37,6 +37,8 @@ include_directories(${IIO_INCLUDE_DIR})
 
 # set targets
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
-add_executable(occlu-mask main.c)
+add_executable(occlu-mask occlu-mask.c)
+add_executable(warp-bicubic warp-bicubic.c)
 link_directories(${CMAKE_BINARY_DIR}/lib)
 target_link_libraries(occlu-mask iio argparse)
+target_link_libraries(warp-bicubic iio argparse)

@@ -1,14 +1,7 @@
 #include "argparse.h"   // command line parser
 #include "iio.h"        // image i/o
 
-#include <stdlib.h>
-#include <math.h>       // nans (used as boundary value by bicubic interp)
-#include <fftw3.h>      // computes dct
-#include <omp.h>
-
-#include <stdio.h>     // getchar() for debugging
-
-// some macros [[[1
+// some macros
 
 #define max(a,b) \
 	({ __typeof__ (a) _a = (a); \
@@ -26,7 +19,7 @@ static const char *const usages[] = {
 	NULL,
 };
 
-// frame-by-frame filtering main
+// main
 int main(int argc, const char *argv[])
 {
 //	omp_set_num_threads(2);
@@ -36,7 +29,6 @@ int main(int argc, const char *argv[])
 	const char *flow_path = NULL; // input flow path
 	const char *dens_path = NULL; // output density map path
 	const char *occl_path = NULL; // output occlusion path
-	float sigma = 0.f;
 	bool verbose = false;
 	int  verbose_int = 0; // hack around bug in argparse
 
@@ -75,8 +67,8 @@ int main(int argc, const char *argv[])
 	if (verbose)
 	{
 		printf("data input:\n");
-		printf("\tbwd flows     %s\n", flow_path);
-		printf("\tbwd occlus.   %s\n", occl_path);
+		printf("\tflow     %s\n", flow_path);
+		printf("\tocclu.   %s\n", occl_path);
 		printf("\n");
 
 		printf("parameters:\n");
